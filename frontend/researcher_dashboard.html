@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Researcher Dashboard - MedPredict</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fa;
+            color: #333;
+        }
+        header {
+            background-color: #0052cc;
+            color: white;
+            padding: 1rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1rem;
+        }
+        .dashboard {
+            display: flex;
+            margin-top: 1rem;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: white;
+            padding: 1rem;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin: 1rem 0;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+        }
+        .sidebar ul li a.active {
+            color: #0052cc;
+            font-weight: 700;
+        }
+        .main-content {
+            flex-grow: 1;
+            padding: 1rem;
+        }
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 1rem;
+            padding: 1rem;
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        .card-title {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 500;
+        }
+        .btn {
+            background-color: #0052cc;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .btn-small {
+            background-color: #0052cc;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+        .btn:hover {
+            background-color: #0041a8;
+        }
+        .form-group {
+            margin-bottom: 1rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-row {
+            display: flex;
+            gap: 1rem;
+        }
+        .form-row .form-group {
+            flex: 1;
+        }
+        .data-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        .stat-box {
+            background-color: #f4f7fa;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0052cc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        table th {
+            background-color: #f4f7fa;
+            font-weight: 500;
+        }
+        .status {
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+        }
+        .status.pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .status.approved {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .status.completed {
+            background-color: #d1ecf1;
+            color: #0c5460;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">MedPredict</div>
+            <div class="nav-links">
+                <a href="data-access.html">Data Access</a>
+                <a href="analysis.html">Analysis Tools</a>
+                <a href="profile.html">My Profile</a>
+                <a href="index.html">Logout</a>
+            </div>
+        </nav>
+    </header>
+    
+    <div class="dashboard">
+        <div class="sidebar">
+            <ul>
+                <li><a href="#" class="active">Dashboard</a></li>
+                <li><a href="#">Data Requests</a></li>
+                <li><a href="#">Data Explorer</a></li>
+                <li><a href="#">Statistical Analysis</a></li>
+                <li><a href="#">Export Data</a></li>
+                <li><a href="#">Research Projects</a></li>
+                <li><a href="#">Settings</a></li>
+            </ul>
+        </div>
+        
+        <div class="main-content">
+            <h1>Researcher Dashboard</h1>
+            <p>Welcome back, Dr. Johnson. <span class="user-badge researcher">Researcher</span></p>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Data Request Form</h2>
+                </div>
+                <div class="card-body">
+                    <form id="data-request-form">
+                        <div class="form-group">
+                            <label for="project-title">Research Project Title</label>
+                            <input type="text" id="project-title" name="project-title" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="project-description">Project Description</label>
+                            <textarea id="project-description" name="project-description" rows="4" required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="data-purpose">Purpose of Data Use</label>
+                            <textarea id="data-purpose" name="data-purpose" rows="3" required></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="institution">Institution</label>
+                                <input type="text" id="institution" name="institution" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="ethics-approval">Ethics Approval Reference</label>
+                                <input type="text" id="ethics-approval" name="ethics-approval" required>
+                            </div>
+                        </div>
+                        
+                        <h3>Data Requirements</h3>
+                        <div class="form-group">
+                            <label>Data Types Required</label>
+                            <div>
+                                <input type="checkbox" id="genetic-data" name="data-types" value="genetic">
+                                <label for="genetic-data">Genetic Data</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="skin-images" name="data-types" value="skin-images">
+                                <label for="skin-images">Skin Images</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="diagnostic-results" name="data-types" value="diagnostic-results">
+                                <label for="diagnostic-results">Diagnostic Results</label>
+                            </div>
+                            <div>
+                                <input type="checkbox" id="demographic-data" name="data-types" value="demographic-data">
+                                <label for="demographic-data">Demographic Data</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date-range-start">Date Range (Start)</label>
+                                <input type="date" id="date-range-start" name="date-range-start">
+                            </div>
+                            <div class="form-group">
+                                <label for="date-range-end">Date Range (End)</label>
+                                <input type="date" id="date-range-end" name="date-range-end">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="sample-size">Required Sample Size</label>
+                            <input type="number" id="sample-size" name="sample-size" min="1">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="additional-requirements">Additional Requirements</label>
+                            <textarea id="additional-requirements" name="additional-requirements" rows="3"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="compliance-agreement">Data Use Agreement</label>
+                            <div>
+                                <input type="checkbox" id="compliance-agreement" name="compliance-agreement" required>
+                                <label for="compliance-agreement">I agree to comply with all relevant data protection regulations and use the data only for the stated research purpose</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn">Submit Data Request</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Active Data Requests</h2>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Request ID</th>
+                                <th>Project</th>
+                                <th>Submission Date</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>REQ-2025-0032</td>
+                                <td>Genetic Markers in Melanoma</td>
+                                <td>Feb 20, 2025</td>
+                                <td><span class="status pending">Pending Review</span></td>
+                                <td><a href="#">View Details</a></td>
+                            </tr>
+                            <tr>
+                                <td>REQ-2025-0028</td>
+                                <td>AI Classification of Dermatological Images</td>
+                                <td>Feb 15, 2025</td>
+                                <td><span class="status approved">Approved</span></td>
+                                <td><a href="#">Access Data</a></td>
+                            </tr>
+                            <tr>
+                                <td>REQ-2025-0015</td>
+                                <td>Comparative Study of Skin Cancer Predictors</td>
+                                <td>Jan 25, 2025</td>
+                                <td><span class="status completed">Completed</span></td>
+                                <td><a href="#">View Report</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title">Data Explorer</h2>
+                    <button class="btn-small">Launch Explorer</button>
+                </div>
+                <div class="card-body">
+                    <div class="data-stats">
+                        <div class="stat-box">
+                            <h3>Available Records</h3>
+                            <p class="stat-number">12,456</p>
+                            <p>Across 32 hospitals</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>Genetic Samples</h3>
+                            <p class="stat-number">8,943</p>
+                            <p>With full sequencing</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>Skin Images</h3>
+                            <p class="stat-number">15,782</p>
+                            <p>Dermatologist validated</p>
+                        </div>
+                        <div class="stat-box">
+                            <h3>Cancer Cases</h3>
+                            <p class="stat-number">3,241</p>
+                            <p>With complete follow-up</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('data-request-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Your data request has been submitted and is pending review.');
+        });
+    </script>
+</body>
+</html>

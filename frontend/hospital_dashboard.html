@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Dashboard - MedPredict</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header class="main-header">
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <span>MedPredict</span>
+                </div>
+                <div class="nav-links">
+                    <a href="patient-records.html"><i class="fas fa-folder"></i> <span>Patient Records</span></a>
+                    <a href="predictions.html"><i class="fas fa-chart-line"></i> <span>Predictions</span></a>
+                    <a href="profile.html"><i class="fas fa-user-circle"></i> <span>My Profile</span></a>
+                    <a href="index.html"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="dashboard">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user-md"></i>
+                    </div>
+                    <div>
+                        <div class="user-name">Dr. Smith</div>
+                        <span class="badge badge-primary">Hospital Staff</span>
+                    </div>
+                </div>
+            </div>
+            
+            <ul class="sidebar-nav">
+                <li><a href="#" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-user-plus"></i> New Patient</a></li>
+                <li><a href="#"><i class="fas fa-dna"></i> Cancer Prediction</a></li>
+                <li><a href="#"><i class="fas fa-camera"></i> Skin Cancer Analysis</a></li>
+                <li><a href="#"><i class="fas fa-folder-open"></i> Patient Records</a></li>
+                <li><a href="#"><i class="fas fa-database"></i> Data Management</a></li>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+            </ul>
+        </aside>
+        
+        <main class="main-content">
+            <div class="header-actions">
+                <div>
+                    <h1 class="page-header">Hospital Dashboard</h1>
+                    <p>Welcome back, Dr. Smith.</p>
+                </div>
+                <div>
+                    <button class="btn btn-primary"><i class="fas fa-plus"></i> New Prediction</button>
+                </div>
+            </div>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: var(--primary);">
+                        <i class="fas fa-user-injured"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Total Patients</h3>
+                        <div class="stat-value">2,543</div>
+                        <div class="stat-description">+12% from last month</div>
+                    </div>
+                    <i class="fas fa-user-injured stat-bg-icon"></i>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: var(--success);">
+                        <i class="fas fa-microscope"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Predictions Made</h3>
+                        <div class="stat-value">1,874</div>
+                        <div class="stat-description">This month: 215</div>
+                    </div>
+                    <i class="fas fa-microscope stat-bg-icon"></i>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: var(--warning);">
+                        <i class="fas fa-vial"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>Pending Tests</h3>
+                        <div class="stat-value">42</div>
+                        <div class="stat-description">5 urgent</div>
+                    </div>
+                    <i class="fas fa-vial stat-bg-icon"></i>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon" style="background-color: var(--danger);">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3>High Risk Cases</h3>
+                        <div class="stat-value">18</div>
+                        <div class="stat-description">Requires attention</div>
+                    </div>
+                    <i class="fas fa-exclamation-triangle stat-bg-icon"></i>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="card-title"><i class="fas fa-dna"></i> Cancer Prediction</h2>
+                </div>
+                <div class="card-body">
+                    <form id="patient-form">
+                        <h3><i class="fas fa-user"></i> Patient Information</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="patient-id">Patient ID</label>
+                                <input type="text" id="patient-id" name="patient-id" placeholder="Enter patient ID" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="patient-age">Age</label>
+                                <input type="number" id="patient-age" name="patient-age" placeholder="Enter age" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="patient-gender">Gender</label>
+                                <select id="patient-gender" name="patient-gender" required>
+                                    <option value="" disabled selected>Select gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <h3><i class="fas fa-dna"></i> Genetic Data Input</h3>
+                        <div class="form-group">
+                            <label for="genetic-file">Upload Genetic Data File (CSV, TXT)</label>
+                            <div class="upload-section" id="genetic-upload">
+                                <i class="fas fa-file-upload"></i>
+                                <p>Drag and drop genetic data files here or click to browse</p>
+                                <input type="file" id="genetic-file" name="genetic-file" accept=".csv,.txt" style="display: none;">
+                            </div>
+                        </div>
+                        
+                        <h3><i class="fas fa-camera-retro"></i> Skin Image Analysis</h3>
+                        <div class="form-group">
+                            <label for="skin-image">Upload Skin Image</label>
+                            <div class="upload-section" id="image-upload">
+                                <i class="fas fa-image"></i>
+                                <p>Drag and drop skin images here or click to browse</p>
+                                <input type="file" id="skin-image" name="skin-image" accept="image/*" style="display: none;">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="image-location">Body Location</label>
+                            <select id="image-location" name="image-location">
+                                <option value="" disabled selected>Select location</option>
+                                <option value="face">Face</option>
+                                <option value="scalp">Scalp</option>
+                                <option value="neck">Neck</option>
+                                <option value="chest">Chest</option>
+                                <option value="back">Back</option>
+                                <option value="arm">Arm</option>
+                                <option value="hand">Hand</option>
+                                <option value="leg">Leg</option>
+                                <option value="foot">Foot</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary"><i class="fas fa-play-circle"></i> Run Prediction</button>
+                        </div>
+                    </form>
+                    
+                    <div class="prediction-result" style="display: none;">
+                        <h3><i class="fas fa-chart-pie"></i> Prediction Results</h3>
+                        
+                        <div class="form-row">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title"><i class="fas fa-dna"></i> Genetic Analysis</h3>
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>Cancer Risk:</strong> <span id="cancer-risk" class="text-success">Low Risk (12%)</span></p>
+                                    <p><strong>Confidence:</strong> <span id="genetic-confidence">88%
